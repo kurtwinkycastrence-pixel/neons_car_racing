@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Neon Rush 3D</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+<body>
+
+    <div id="game">
+
+        <!-- =========================
+             HUD
+        ========================== -->
+
+        <div id="hud">
+
+            <div class="hud-box">
+
+                <span class="hud-label">
+                    SPEED
+                </span>
+
+                <span id="speed">
+                    0
+                </span>
+
+                <span class="hud-unit">
+                    KM/H
+                </span>
+
+            </div>
+
+
+            <div class="hud-box">
+
+                <span class="hud-label">
+                    DISTANCE
+                </span>
+
+                <span id="distance">
+                    0
+                </span>
+
+                <span class="hud-unit">
+                    M
+                </span>
+
+            </div>
+
+
+            <div class="hud-box nitro-box">
+
+                <span class="hud-label">
+                    NITRO
+                </span>
+
+                <div id="nitro-bar">
+
+                    <div id="nitro-fill"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             START / GARAGE
+        ========================== -->
+
+        <div id="start-screen">
+
+            <div class="title-section">
+
+                <div class="title-small">
+                    WELCOME TO
+                </div>
+
+                <h1>
+                    NEON RUSH
+                </h1>
+
+                <p>
+                    3D STREET RACING
+                </p>
+
+            </div>
+
+
+            <!-- GARAGE -->
+
+            <div id="garage">
+
+                <div class="garage-header">
+
+                    <span>
+                        GARAGE
+                    </span>
+
+                    <span class="garage-status">
+                        READY
+                    </span>
+
+                </div>
+
+
+                <h2>
+                    SELECT YOUR RIDE
+                </h2>
+
+
+                <!-- CAR PREVIEW -->
+
+                <div id="car-preview">
+
+                    <div class="preview-grid"></div>
+
+                    <div class="preview-light left"></div>
+
+                    <div class="preview-light right"></div>
+
+                    <div class="preview-car">
+                        🚗
+                    </div>
+
+                    <div class="preview-floor"></div>
+
+                </div>
+
+
+                <!-- CAR OPTIONS -->
+
+                <div id="car-options">
+
+                    <button
+                        class="car-button active"
+                        data-car="0"
+                    >
+                        <span>01</span>
+                        STREET
+                    </button>
+
+
+                    <button
+                        class="car-button"
+                        data-car="1"
+                    >
+                        <span>02</span>
+                        SPORT
+                    </button>
+
+
+                    <button
+                        class="car-button"
+                        data-car="2"
+                    >
+                        <span>03</span>
+                        GT
+                    </button>
+
+                </div>
+
+
+                <!-- CAR STATS -->
+
+                <div id="car-stats">
+
+                    <div class="car-stat">
+
+                        <div class="stat-name">
+                            SPEED
+                        </div>
+
+                        <div class="stat-bar">
+
+                            <div
+                                id="speed-stat"
+                                class="stat-fill"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="car-stat">
+
+                        <div class="stat-name">
+                            ACCELERATION
+                        </div>
+
+                        <div class="stat-bar">
+
+                            <div
+                                id="accel-stat"
+                                class="stat-fill"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="car-stat">
+
+                        <div class="stat-name">
+                            HANDLING
+                        </div>
+
+                        <div class="stat-bar">
+
+                            <div
+                                id="handling-stat"
+                                class="stat-fill"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- START BUTTON -->
+
+            <button id="start-button">
+
+                <span>
+                    START RACE
+                </span>
+
+                <span class="button-arrow">
+                    →
+                </span>
+
+            </button>
+
+
+            <!-- CONTROLS -->
+
+            <div class="controls">
+
+                <div class="control-title">
+                    CONTROLS
+                </div>
+
+                <div class="control-grid">
+
+                    <div>
+                        <kbd>W</kbd>
+                        <span>ACCELERATE</span>
+                    </div>
+
+                    <div>
+                        <kbd>S</kbd>
+                        <span>BRAKE</span>
+                    </div>
+
+                    <div>
+                        <kbd>A</kbd>
+                        <span>LEFT</span>
+                    </div>
+
+                    <div>
+                        <kbd>D</kbd>
+                        <span>RIGHT</span>
+                    </div>
+
+                    <div>
+                        <kbd>SPACE</kbd>
+                        <span>NITRO</span>
+                    </div>
+
+                    <div>
+                        <kbd>ESC</kbd>
+                        <span>PAUSE</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             GAME OVER
+        ========================== -->
+
+        <div id="game-over">
+
+            <div class="game-over-card">
+
+                <div class="game-over-small">
+                    RACE TERMINATED
+                </div>
+
+                <h1>
+                    GAME OVER
+                </h1>
+
+                <div class="result-line"></div>
+
+                <p>
+                    DISTANCE
+                </p>
+
+                <div class="final-score">
+
+                    <span id="final-distance">
+                        0
+                    </span>
+
+                    <small>
+                        M
+                    </small>
+
+                </div>
+
+
+                <button id="restart-button">
+
+                    <span>
+                        RACE AGAIN
+                    </span>
+
+                    <span>
+                        ↻
+                    </span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script
+        type="module"
+        src="style.js"
+    ></script>
+
+</body>
+
+</html>

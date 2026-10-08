@@ -1,0 +1,1537 @@
+/* =========================================================
+   NEON RUSH 3D
+   FINAL STYLE
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #02030a;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+
+body {
+    color: white;
+}
+
+
+/* =========================================================
+   GAME
+========================================================= */
+
+#game {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+
+    background: #02030a;
+}
+
+
+/* =========================================================
+   THREE.JS CANVAS
+========================================================= */
+
+#game canvas {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    z-index: 1;
+}
+
+
+/* =========================================================
+   HUD
+========================================================= */
+
+#hud {
+    position: fixed;
+
+    top: 22px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: min(94vw, 850px);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    z-index: 20;
+
+    pointer-events: none;
+}
+
+
+.hud-box {
+    min-width: 150px;
+
+    padding: 12px 18px;
+
+    border: 1px solid rgba(
+        0,
+        255,
+        255,
+        0.28
+    );
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(3, 15, 30, 0.86),
+            rgba(3, 5, 16, 0.72)
+        );
+
+    backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 0 18px rgba(
+            0,
+            255,
+            255,
+            0.08
+        ),
+
+        inset 0 0 18px rgba(
+            0,
+            255,
+            255,
+            0.03
+        );
+
+    text-align: center;
+}
+
+
+.hud-label {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: rgba(
+        255,
+        255,
+        255,
+        0.55
+    );
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    letter-spacing: 3px;
+}
+
+
+.hud-box > span:nth-child(2) {
+    display: inline-block;
+
+    min-width: 55px;
+
+    color: #00ffff;
+
+    font-size: 25px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    text-shadow:
+        0 0 8px #00ffff;
+}
+
+
+.hud-unit {
+    margin-left: 4px;
+
+    color: rgba(
+        255,
+        255,
+        255,
+        0.5
+    );
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   NITRO
+========================================================= */
+
+.nitro-box {
+    min-width: 190px;
+}
+
+
+#nitro-bar {
+    width: 100%;
+
+    height: 9px;
+
+    margin-top: 7px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.1
+        );
+
+    border:
+        1px solid
+        rgba(
+            0,
+            255,
+            255,
+            0.2
+        );
+}
+
+
+#nitro-fill {
+    width: 100%;
+
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            #00ffff,
+            #008cff
+        );
+
+    box-shadow:
+        0 0 10px #00ffff;
+
+    transition:
+        width 0.08s linear;
+}
+
+
+/* =========================================================
+   START SCREEN
+========================================================= */
+
+#start-screen {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 10;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow-y: auto;
+
+    padding:
+        80px
+        20px
+        40px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(
+                0,
+                30,
+                60,
+                0.28
+            ),
+            rgba(
+                0,
+                0,
+                0,
+                0.88
+            ) 72%
+        );
+
+    backdrop-filter:
+        blur(2px);
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.title-section {
+    text-align: center;
+
+    margin-bottom: 18px;
+}
+
+
+.title-small {
+    color: rgba(
+        255,
+        255,
+        255,
+        0.45
+    );
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    letter-spacing: 6px;
+
+    margin-bottom: 3px;
+}
+
+
+.title-section h1 {
+    font-size:
+        clamp(
+            42px,
+            8vw,
+            80px
+        );
+
+    line-height: 0.9;
+
+    font-weight: 1000;
+
+    letter-spacing: 8px;
+
+    color: #ffffff;
+
+    text-shadow:
+        0 0 8px #00ffff,
+        0 0 25px #00ffff,
+        0 0 55px rgba(
+            0,
+            140,
+            255,
+            0.65
+        );
+}
+
+
+.title-section p {
+    margin-top: 10px;
+
+    color: #00ffff;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    letter-spacing: 6px;
+
+    text-shadow:
+        0 0 8px #00ffff;
+}
+
+
+/* =========================================================
+   GARAGE
+========================================================= */
+
+#garage {
+    width:
+        min(
+            92vw,
+            620px
+        );
+
+    padding: 18px;
+
+    border:
+        1px solid
+        rgba(
+            0,
+            255,
+            255,
+            0.3
+        );
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(
+                0,
+                255,
+                255,
+                0.07
+            ),
+            rgba(
+                5,
+                7,
+                20,
+                0.88
+            )
+        );
+
+    box-shadow:
+        0 0 35px
+        rgba(
+            0,
+            255,
+            255,
+            0.09
+        ),
+
+        inset 0 0 25px
+        rgba(
+            0,
+            255,
+            255,
+            0.035
+        );
+
+    backdrop-filter:
+        blur(14px);
+}
+
+
+/* =========================================================
+   GARAGE HEADER
+========================================================= */
+
+.garage-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 8px;
+
+    color: rgba(
+        255,
+        255,
+        255,
+        0.4
+    );
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    letter-spacing: 3px;
+}
+
+
+.garage-status {
+    color: #00ff99;
+
+    text-shadow:
+        0 0 8px #00ff99;
+}
+
+
+#garage h2 {
+    margin-bottom: 13px;
+
+    color: #00ffff;
+
+    font-size: 15px;
+
+    letter-spacing: 4px;
+
+    text-shadow:
+        0 0 10px #00ffff;
+}
+
+
+/* =========================================================
+   CAR PREVIEW
+========================================================= */
+
+#car-preview {
+    position: relative;
+
+    width: 100%;
+
+    height: 155px;
+
+    overflow: hidden;
+
+    border-radius: 12px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.12
+        );
+
+    background:
+        radial-gradient(
+            ellipse at center bottom,
+            rgba(
+                0,
+                255,
+                255,
+                0.16
+            ),
+            rgba(
+                0,
+                0,
+                0,
+                0.75
+            ) 68%
+        );
+}
+
+
+/* FLOOR GRID */
+
+.preview-grid {
+    position: absolute;
+
+    inset: 50% 0 0;
+
+    opacity: 0.3;
+
+    background-image:
+        linear-gradient(
+            rgba(
+                0,
+                255,
+                255,
+                0.2
+            ) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(
+                0,
+                255,
+                255,
+                0.2
+            ) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        25px 15px;
+
+    transform:
+        perspective(150px)
+        rotateX(45deg);
+}
+
+
+/* CAR */
+
+.preview-car {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        )
+        scale(2.8);
+
+    font-size: 48px;
+
+    filter:
+        drop-shadow(
+            0 0 7px #00ffff
+        )
+
+        drop-shadow(
+            0 0 20px
+            rgba(
+                0,
+                255,
+                255,
+                0.7
+            )
+        );
+
+    animation:
+        garageCarFloat
+        2.5s
+        ease-in-out
+        infinite;
+}
+
+
+/* PREVIEW LIGHTS */
+
+.preview-light {
+    position: absolute;
+
+    top: 40%;
+
+    width: 100px;
+
+    height: 2px;
+
+    background: #00ffff;
+
+    filter:
+        blur(4px);
+
+    opacity: 0.55;
+}
+
+
+.preview-light.left {
+    left: -20px;
+
+    transform:
+        rotate(-8deg);
+}
+
+
+.preview-light.right {
+    right: -20px;
+
+    transform:
+        rotate(8deg);
+}
+
+
+/* FLOOR */
+
+.preview-floor {
+    position: absolute;
+
+    left: 20%;
+
+    right: 20%;
+
+    bottom: 17px;
+
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: #00ffff;
+
+    filter:
+        blur(5px);
+
+    box-shadow:
+        0 0 15px #00ffff,
+        0 0 30px #00ffff;
+
+    opacity: 0.7;
+}
+
+
+/* =========================================================
+   CAR BUTTONS
+========================================================= */
+
+#car-options {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 8px;
+
+    margin-top: 12px;
+}
+
+
+.car-button {
+    padding: 10px 8px;
+
+    border:
+        1px solid
+        rgba(
+            0,
+            255,
+            255,
+            0.25
+        );
+
+    border-radius: 8px;
+
+    background:
+        rgba(
+            0,
+            10,
+            20,
+            0.75
+        );
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.8
+        );
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition:
+        0.2s ease;
+}
+
+
+.car-button span {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.3
+        );
+
+    font-size: 7px;
+
+    letter-spacing: 1px;
+}
+
+
+.car-button:hover {
+    transform:
+        translateY(-2px);
+
+    border-color:
+        #00ffff;
+
+    box-shadow:
+        0 0 14px
+        rgba(
+            0,
+            255,
+            255,
+            0.25
+        );
+}
+
+
+.car-button.active {
+    color: #001015;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00ffff,
+            #008cff
+        );
+
+    border-color:
+        #00ffff;
+
+    box-shadow:
+        0 0 15px
+        rgba(
+            0,
+            255,
+            255,
+            0.65
+        );
+}
+
+
+.car-button.active span {
+    color:
+        rgba(
+            0,
+            20,
+            30,
+            0.55
+        );
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+#car-stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+
+    margin-top: 15px;
+}
+
+
+.car-stat {
+    min-width: 0;
+}
+
+
+.stat-name {
+    margin-bottom: 5px;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.55
+        );
+
+    font-size: 8px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+}
+
+
+.stat-bar {
+    width: 100%;
+
+    height: 6px;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.1
+        );
+}
+
+
+.stat-fill {
+    width: 70%;
+
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            #00ffff,
+            #008cff
+        );
+
+    box-shadow:
+        0 0 8px #00ffff;
+
+    transition:
+        width 0.35s ease;
+}
+
+
+/* =========================================================
+   START BUTTON
+========================================================= */
+
+#start-button {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 35px;
+
+    min-width: 220px;
+
+    margin-top: 17px;
+
+    padding: 13px 20px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00ffff,
+            #008cff
+        );
+
+    color: #001015;
+
+    font-size: 12px;
+
+    font-weight: 1000;
+
+    letter-spacing: 3px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 18px
+        rgba(
+            0,
+            255,
+            255,
+            0.55
+        );
+
+    transition:
+        0.2s ease;
+}
+
+
+#start-button:hover {
+    transform:
+        translateY(-2px)
+        scale(1.03);
+
+    box-shadow:
+        0 0 30px
+        rgba(
+            0,
+            255,
+            255,
+            0.8
+        );
+}
+
+
+#start-button:active {
+    transform:
+        scale(0.98);
+}
+
+
+.button-arrow {
+    font-size: 20px;
+
+    line-height: 10px;
+}
+
+
+/* =========================================================
+   CONTROLS
+========================================================= */
+
+.controls {
+    width:
+        min(
+            92vw,
+            620px
+        );
+
+    margin-top: 13px;
+
+    padding: 10px 15px;
+
+    border-top:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+}
+
+
+.control-title {
+    margin-bottom: 8px;
+
+    text-align: center;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.35
+        );
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+}
+
+
+.control-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(6, 1fr);
+
+    gap: 7px;
+}
+
+
+.control-grid div {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 4px;
+}
+
+
+.control-grid span {
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.4
+        );
+
+    font-size: 6px;
+
+    letter-spacing: 0.5px;
+
+    text-align: center;
+}
+
+
+kbd {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 25px;
+
+    height: 22px;
+
+    padding: 0 5px;
+
+    border:
+        1px solid
+        rgba(
+            0,
+            255,
+            255,
+            0.3
+        );
+
+    border-radius: 5px;
+
+    background:
+        rgba(
+            0,
+            255,
+            255,
+            0.06
+        );
+
+    color: #00ffff;
+
+    font-size: 8px;
+
+    font-weight: bold;
+
+    box-shadow:
+        inset 0 -2px 0
+        rgba(
+            0,
+            255,
+            255,
+            0.1
+        );
+}
+
+
+/* =========================================================
+   GAME OVER
+========================================================= */
+
+#game-over {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 30;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(
+                60,
+                0,
+                25,
+                0.25
+            ),
+            rgba(
+                0,
+                0,
+                0,
+                0.88
+            )
+        );
+
+    backdrop-filter:
+        blur(8px);
+}
+
+
+.game-over-card {
+    width:
+        min(
+            90vw,
+            480px
+        );
+
+    padding: 35px;
+
+    text-align: center;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            0,
+            80,
+            0.4
+        );
+
+    border-radius: 18px;
+
+    background:
+        rgba(
+            5,
+            5,
+            15,
+            0.92
+        );
+
+    box-shadow:
+        0 0 45px
+        rgba(
+            255,
+            0,
+            80,
+            0.14
+        );
+}
+
+
+.game-over-small {
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.4
+        );
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+}
+
+
+.game-over-card h1 {
+    margin-top: 8px;
+
+    color: #ff3355;
+
+    font-size:
+        clamp(
+            35px,
+            7vw,
+            58px
+        );
+
+    letter-spacing: 5px;
+
+    text-shadow:
+        0 0 12px #ff3355,
+        0 0 30px
+        rgba(
+            255,
+            0,
+            70,
+            0.55
+        );
+}
+
+
+.result-line {
+    width: 80%;
+
+    height: 1px;
+
+    margin: 18px auto;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #ff3355,
+            transparent
+        );
+}
+
+
+.game-over-card p {
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.45
+        );
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+}
+
+
+.final-score {
+    margin: 8px 0 25px;
+
+    color: white;
+
+    font-size: 58px;
+
+    font-weight: 900;
+
+    text-shadow:
+        0 0 15px
+        rgba(
+            255,
+            255,
+            255,
+            0.35
+        );
+}
+
+
+.final-score small {
+    color: #ff3355;
+
+    font-size: 14px;
+
+    letter-spacing: 2px;
+}
+
+
+#restart-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    min-width: 190px;
+
+    padding: 13px 20px;
+
+    border: 1px solid #ff3355;
+
+    border-radius: 8px;
+
+    background:
+        rgba(
+            255,
+            0,
+            70,
+            0.08
+        );
+
+    color: #ff6680;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition:
+        0.2s ease;
+}
+
+
+#restart-button:hover {
+    background:
+        #ff3355;
+
+    color: white;
+
+    box-shadow:
+        0 0 20px
+        rgba(
+            255,
+            0,
+            70,
+            0.6
+        );
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes garageCarFloat {
+
+    0%,
+    100% {
+        transform:
+            translate(
+                -50%,
+                -50%
+            )
+            translateY(0)
+            scale(2.8);
+    }
+
+    50% {
+        transform:
+            translate(
+                -50%,
+                -50%
+            )
+            translateY(-7px)
+            scale(2.8);
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    #hud {
+        top: 10px;
+
+        width: 96vw;
+
+        gap: 5px;
+    }
+
+
+    .hud-box {
+        min-width: 0;
+
+        flex: 1;
+
+        padding: 8px 5px;
+    }
+
+
+    .hud-box > span:nth-child(2) {
+        font-size: 18px;
+    }
+
+
+    .nitro-box {
+        min-width: 0;
+    }
+
+
+    #start-screen {
+        justify-content:
+            flex-start;
+
+        padding-top: 55px;
+
+        padding-bottom: 20px;
+    }
+
+
+    .title-section {
+        margin-bottom: 10px;
+    }
+
+
+    .title-section h1 {
+        letter-spacing: 5px;
+    }
+
+
+    #garage {
+        padding: 12px;
+    }
+
+
+    #car-preview {
+        height: 125px;
+    }
+
+
+    .preview-car {
+        transform:
+            translate(
+                -50%,
+                -50%
+            )
+            scale(2.2);
+    }
+
+
+    #car-options {
+        gap: 5px;
+    }
+
+
+    .car-button {
+        padding: 8px 4px;
+
+        font-size: 8px;
+
+        letter-spacing: 1px;
+    }
+
+
+    #car-stats {
+        gap: 7px;
+    }
+
+
+    .stat-name {
+        font-size: 7px;
+    }
+
+
+    .control-grid {
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        row-gap: 7px;
+    }
+
+
+    .controls {
+        margin-top: 8px;
+    }
+
+
+    #start-button {
+        margin-top: 10px;
+    }
+
+}
+
+
+@media (max-height: 750px) {
+
+    #start-screen {
+        justify-content:
+            flex-start;
+
+        padding-top: 20px;
+
+        padding-bottom: 20px;
+    }
+
+
+    .title-section h1 {
+        font-size: 40px;
+    }
+
+
+    #garage {
+        padding: 10px;
+    }
+
+
+    #car-preview {
+        height: 105px;
+    }
+
+
+    .preview-car {
+        transform:
+            translate(
+                -50%,
+                -50%
+            )
+            scale(2);
+    }
+
+
+    #start-button {
+        margin-top: 8px;
+
+        padding: 10px 18px;
+    }
+
+
+    .controls {
+        margin-top: 6px;
+    }
+
+}
